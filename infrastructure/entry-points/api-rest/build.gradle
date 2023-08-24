@@ -1,0 +1,18 @@
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-undertow'
+    implementation project(':usecase')
+    implementation project(':model')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.7'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.5.Final'
+}
+
+
+configurations{
+	implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+}
