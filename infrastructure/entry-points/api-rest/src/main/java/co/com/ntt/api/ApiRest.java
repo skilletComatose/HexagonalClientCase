@@ -22,6 +22,10 @@ public class ApiRest {
     @PostMapping(path = "/client")
     @BodyValidations
     public  ResponseEntity<ClientResponse> findClientByTypeAndDocument( @RequestBody @Validated FindClientByTypeAndDocumentDto body, BindingResult bindingResult){
+        if(body.getDocumentType().isEmpty()|| body.getDocumentNumber().isEmpty()){
+            return ResponseEntity.internalServerError().body(null);
+        }
+
         return getResponse(
                 clientUseCase.findClientByTypeAndDocument(
                         body.getDocumentType(),

@@ -91,7 +91,17 @@ POST : http://localhost:8090/api/v1/client
 >>    "documentNumber": "23445322"
 >>} 
 >>```
->>#### Response
->>```json
 
->```
+
+
+>> status :500
+>>> #### Request
+>>```json
+>>{
+>>     "documentType":"",
+>>    "documentNumber": "23445322"
+>>} 
+>>```
+>>#### Response
+`
+
