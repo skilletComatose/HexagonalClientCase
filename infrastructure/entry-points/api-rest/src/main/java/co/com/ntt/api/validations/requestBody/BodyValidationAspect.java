@@ -22,13 +22,15 @@ public class BodyValidationAspect {
 
     @Around("@annotation(BodyValidations)")
     public Object handleValidations(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("ingresando al método ...");
+        String methodName = joinPoint.getSignature().getName();
+        log.info(">>>>>    ingresando a " + methodName);
         BindingResult bindingResult = this.getBindingResult(joinPoint);
 
         if(bindingResult.hasErrors()){
+            log.warning(">>>>   bad request en "+ methodName);
             return this.getBadRequest(bindingResult);
         }
-
+        log.info(">>>> Ejecutando " + methodName);
         return joinPoint.proceed();
     }
 
@@ -45,7 +47,7 @@ public class BodyValidationAspect {
 
     }
 
-    public ResponseEntity<GlobalResponse<Object>> getBadRequest (BindingResult result){
+    public ResponseEntity<Object> getBadRequest (BindingResult result){
 
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(
